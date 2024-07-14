@@ -1,7 +1,5 @@
 # Schedule Laptop Shutdown on Battery
 
-move schedule.c in /root/schedule.c
-
     wget https://github.com/carlox97/Schedule-Laptop-Shutdown-on-Battery/raw/main/schedule.c
     mv schedule.c /root/schedule.c
     gcc /root/schedule.c -o /root/schedule
