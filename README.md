@@ -1,19 +1,29 @@
 # Schedule Laptop Shutdown on Battery
 
+move schedule.c in /root/schedule.c
 
-
-    sudo apt install acpi
     wget https://github.com/carlox97/Schedule-Laptop-Shutdown-on-Battery/raw/main/schedule.c
-    sudo mv schedule.c /root/schedule.c
-    sudo gcc /root/schedule.c -o /root/schedule
-    sudo chmod +x /root/schedule
+    mv schedule.c /root/schedule.c
+    gcc /root/schedule.c -o /root/schedule
+    chmod +x /root/schedule
 
 ## create a CronJob (run every 5 minutes)
 
+    sudo nano /etc/systemd/system/schedule.service
+
+Paste & Save
+
+    [Unit]
+    Description=Run schedule executable
+    
+    [Service]
+    ExecStart=/root/schedule
+
+
+Then
+
     sudo crontab -e
 
-paste 
+Paste & Save
 
-    */5 * * * * /root/schedule >/dev/null 2>&1
-
-save and close: CTRL + X and press Y if you use nano.
+    */5 * * * * /bin/systemctl start schedule.service
